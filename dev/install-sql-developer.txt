@@ -1,0 +1,31 @@
+-Extract file to /opt:
+    sudo unzip sqldeveloper-*-no-jre.zip -d /opt/
+    sudo chmod +x /opt/sqldeveloper/sqldeveloper.sh
+    
+-Linking over an in-path launcher for Oracle SQL Developer:
+    sudo ln -s /opt/sqldeveloper/sqldeveloper.sh /usr/local/bin/sqldeveloper
+    
+-Edit /opt/sqldeveloper/sqldeveloper.sh and replace it's content to:
+    #!/bin/bash
+    unset -v GNOME_DESKTOP_SESSION_ID
+    cd /opt/sqldeveloper/sqldeveloper/bin && bash sqldeveloper $*
+
+-Finally, create desktop application for easy to use:
+    cd /usr/share/applications/
+    sudo vim sqldeveloper.desktop
+
+    -add this lines:
+
+[Desktop Entry]
+Exec=sqldeveloper
+Terminal=false
+StartupNotify=true
+Categories=Development;IDE;Oracle;
+Type=Application
+Icon=/opt/sqldeveloper/icon.png
+Name=Oracle SQL Developer
+Comment=The World's #1 Tool for Managing your Oracle Database
+
+
+-then type:
+    sudo update-desktop-database

@@ -1,0 +1,19 @@
+# ### config file for openfortivpn, see man openfortivpn(1) ###
+# 
+# host = vpn.example.org
+# port = 443
+# username = vpnuser
+# password = VPNpassw0rd
+
+#host = vpn.caspco.ir
+host=178.21.45.2
+#host=178.21.46.2
+#host=178.21.47.2
+
+#host=89.43.11.207
+#host=89.43.11.203
+
+port=44444
+username=caspian\moein
+password=*Rm@321#
+trusted-cert = 6ad8bc63414d16188ec397e127f712bb3a1d0e947413a6051979b5183f173c15

@@ -1,0 +1,2 @@
+# sudo dnf install renameutils
+alias re="EDITOR=\"code -w\" qmv -f do"
