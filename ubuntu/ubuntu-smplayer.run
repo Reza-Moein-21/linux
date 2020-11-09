@@ -1,0 +1,5 @@
+#!/bin/sh
+echo Installing SmPlayer
+sudo add-apt-repository ppa:rvm/smplayer -y
+sudo apt-get update -y
+sudo apt-get install smplayer smplayer-themes smplayer-skins -y

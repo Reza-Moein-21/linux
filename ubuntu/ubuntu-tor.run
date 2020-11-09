@@ -1,0 +1,7 @@
+#!/bin/sh
+echo Installing tor
+sudo apt install tor torsocks obfs4proxy privoxy -y
+sudo systemctl enable tor@default.service
+sudo systemctl start tor@default.service
+sudo systemctl enable privoxy.service
+sudo systemctl start privoxy.service

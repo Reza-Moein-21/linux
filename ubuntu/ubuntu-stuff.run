@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "<<Installing other stuff>>"
+sudo apt-get install -y curl tor htop privoxy openfortivpn renameutils vim unrar git gcc g++ make ffmpeg 
