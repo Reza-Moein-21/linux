@@ -1,2 +1,0 @@
-#!/bin/sh
-flatpak install flathub org.remmina.Remmina

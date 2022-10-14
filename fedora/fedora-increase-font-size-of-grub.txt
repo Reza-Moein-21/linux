@@ -1,0 +1,25 @@
+# 1. Backup from vconsole.conf
+sudo cp -v /etc/vconsole.conf /etc/vconsole.original
+
+# 2. Change vconsole.conf , set FONT
+FONT="latarcyrheb-sun32"
+
+# 3. Backup from grup config
+sudo cp -v /etc/default/grub /etc/default/grub.original
+
+# 4. Append vconsole.font=latarcyrheb-sun32 (with a space before it!) to the line 
+GRUB_CMDLINE_LINUX=
+
+# 5. Check if system uses UEFI boot or legacy/BIOS boot
+test -d /sys/firmware/efi && echo EFI || echo Legacy
+
+# 6. If answers is EFI
+sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+# 6.1 If answers is legacy/BIOS mode
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+# 7. reboot machine
+reboot
+
+

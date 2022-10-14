@@ -1,0 +1,7 @@
+# Current user
+export PS1="\[\e[93m\]➜\[\e[m\]\[\e[92m\] \[\e[m\]\[\e[92m\]\W\[\e[m\]\[\e[92m\]:\[\e[m\] "
+
+# Root user
+export PS1="\[\e[91m\]➜\[\e[m\]\[\e[96m\] \[\e[m\]\[\e[96m\]\W\[\e[m\]\[\e[96m\]:\[\e[m\] "
+
+

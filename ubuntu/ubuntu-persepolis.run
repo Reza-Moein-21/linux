@@ -1,5 +1,0 @@
-#!/bin/sh
-echo Installing Persepolis download manager
-sudo add-apt-repository ppa:persepolis/ppa -y
-sudo apt-get update -y
-sudo apt-get install persepolis -y
