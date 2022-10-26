@@ -14,6 +14,6 @@ host=178.21.45.2
 #host=89.43.11.203
 
 port=44444
-username=caspian\moein
-password=Server@2000
-trusted-cert = ce54398f35bcdcd29a5082b75775c2230b96fe93abcf91cd1b3da671d1f3a9c0
+username=moein
+password=Server@!10-
+trusted-cert = f52e9360203862b661aae8820234401efaf7968fc62bf545b6f9f09957e0d4cc
