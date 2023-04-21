@@ -36,7 +36,13 @@ sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.micros
 dnf update -y;
 
 # Install common app
-dnf install -y vlc smplayer nodejs rsms-inter-fonts papirus-icon-theme remmina openfortivpn tor gnome-tweaks obfs4 htop privoxy nautilus-dropbox skypeforlinux code persepolis renameutils vim unrar file-roller gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686;
+dnf install -y \
+vlc smplayer \
+nodejs code vim \
+rsms-inter-fonts google-roboto-mono-fonts papirus-icon-theme \
+remmina openfortivpn tor obfs4 htop privoxy nautilus-dropbox skypeforlinux persepolis renameutils unrar file-roller \
+gnome-shell-extension-appindicator gnome-tweaks gnome-shell-extension-dash-to-dock gnome-shell-extension-gpaste \
+gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686;
 
 # run tor and privoxy service
 systemctl enable tor.service
