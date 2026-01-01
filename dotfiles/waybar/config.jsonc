@@ -3,11 +3,10 @@
   "position": "top",
   "height": 32,
   "spacing": 4,
-  "margin": "5 10 0 10",
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-left": ["sway/workspaces","sway/window"],
   "modules-center": ["clock"],
   "modules-right": [
-    "hyprland/language",
+    "sway/language",
     "pulseaudio",
     "network",
     "cpu",
@@ -17,27 +16,25 @@
     "custom/power"
   ],
   
-  // Hyprland Workspaces
-   "hyprland/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "warp-on-scroll": false,
-       "format": "{name}: {icon}",
-       "format-icons": {
-           "active": "",
-           "default": ""
-         }
-     },
-  "hyprland/language": {
-    "format": "  {}",
+  // Sway Workspaces
+  "sway/workspaces": {
+    "format": "{icon} {name}",
+    "format-icons": {
+      "focused": "",
+      "default": ""
+    },
+    "all-outputs": false
+  }, 
+  "sway/language": {
+    "format": "  {}",
     "format-en": "EN",
     "format-fa": "FA",
     "tooltip": true,
-    "on-click": "hyprctl switchxkblayout current next"
+    "on-click": "swaymsg input \"*\" xkb_switch_layout next"
   },
 
   // Active Window
-  "hyprland/window": {
+  "sway/window": {
     "format": "{}",
     "separator": false,
     "max-length": 50
@@ -45,25 +42,26 @@
 
   // Clock
   "clock": {
-    "format": " {:%I:%M %p}",
-    "format-alt": " {:%a, %d %b}",
+    "format": " {:%I:%M %p | (%b)%m-%d}",
+    "format-alt": " {:%A, %d %B %Y}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "interval": 30
-  },
-  
+    "interval": 10,
+    "timezone": "local"
+   },
+
   // PulseAudio
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-muted": "󰖁 Muted",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": " Muted",
     "format-icons": {
-      "headphone": "󰋋",
-      "hands-free": "󰋎",
-      "headset": "󰋎",
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["󰕿", "󰖀", "󰕾"]
+      "default": ["", "", ""]
     },
     "scroll-step": 5,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
@@ -72,17 +70,17 @@
   
   // Network
   "network": {
-    "format-wifi": "󰖩 {essid}",
-    "format-ethernet": "󰈀 {ifname}",
-    "format-disconnected": "󰖪 No Network",
-    "format-alt": "󰖩 {bandwidthDownBits} 󰖪 {bandwidthUpBits}",
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  {ifname}",
+    "format-disconnected": "  No Network",
+    "format-alt": "  {bandwidthDownBits}  {bandwidthUpBits}",
     "interval": 5,
     "on-click-right": "nm-connection-editor"
   },
   
   // CPU
   "cpu": {
-    "format": "󰻠 {usage}%",
+    "format": " {usage}%",
     "interval": 5,
     "states": {
       "warning": 70,
@@ -92,7 +90,7 @@
   
   // Memory
   "memory": {
-    "format": "󰍛 {percentage}%",
+    "format": "󰍛 {used:.2f}GB",
     "interval": 5,
     "states": {
       "warning": 70,
@@ -107,10 +105,10 @@
       "critical": 15
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰚥 {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
     "interval": 10
   },
   

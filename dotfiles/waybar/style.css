@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "CaskaydiaMono Nerd Font", "FiraCode Nerd Font", "SF Pro Display", sans-serif;
+    font-family: "RobotoMono Nerd Font", sans-serif;
     font-size: 14px;
     font-weight: 500;
     min-height: 0;
@@ -10,62 +10,44 @@
 window#waybar {
     background: rgba(26, 27, 38, 0.9);
     color: #cdd6f4;
-    border-bottom: 2px solid rgba(49, 50, 68, 0.6);
-    border-radius: 0 0 12px 12px;
+   /* border-bottom: 2px solid rgba(49, 50, 68, 0.6);
+   border-radius: 0 0 12px 12px;*/
 }
 
-/* Workspaces */
-/* Workspace Numbers - Always Visible */
-#workspaces button {
-    padding: 0 12px;
-    background: rgba(49, 50, 68, 0.5);
-    color: #6c7086;
-    border-radius: 8px;
-    margin: 0 4px;
-    font-weight: bold;
-    font-size: 14px;
-    min-width: 30px;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-}
-
-#workspaces button:hover {
-    background: rgba(108, 112, 134, 0.3);
-    color: #cdd6f4;
-    border-color: rgba(108, 112, 134, 0.5);
-}
-
-/* Active workspace - highlighted */
-#workspaces button.active {
-    background: rgba(137, 180, 250, 0.2);
-    color: #89b4fa;
-    border: 1px solid rgba(137, 180, 250, 0.4);
-    box-shadow: 0 0 8px rgba(137, 180, 250, 0.2);
-}
-
-/* Workspace with windows but not active */
-#workspaces button.occupied:not(.active) {
-    color: #a6adc8;
-    background: rgba(166, 173, 200, 0.1);
-}
-
-/* Empty workspace */
-#workspaces button.empty {
-    opacity: 0.5;
-}
-
-/* Urgent workspace */
-#workspaces button.urgent {
-    background: rgba(243, 139, 168, 0.2);
-    color: #f38ba8;
-    border: 1px solid rgba(243, 139, 168, 0.4);
-    animation: pulse 2s infinite;
-}
 /* Window Title */
 #window {
     padding: 0 12px;
     color: #a6adc8;
-    font-style: italic;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 8px;
+    color: #6c7086;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+
+#workspaces button.focused {
+    color: #cdd6f4;
+}
+
+#workspaces button:hover {
+    background: rgba(108, 112, 134, 0.2);
+    color: #cdd6f4;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+
+/* Workspace icons */
+#workspaces button {
+    font-size: 16px;
 }
 
 /* Common Module Styling */
@@ -164,25 +146,15 @@ window#waybar {
 /* Power Button */
 #custom-power {
     color: #f38ba8;
-    background: rgba(243, 139, 168, 0.15);
     padding: 0 14px;
     margin-right: 0;
-}
-
-#custom-power:hover {
-    background: rgba(243, 139, 168, 0.25);
 }
 
 /* Keyborad Button */
 #language {
-    color: #f38ba8;
-    background: rgba(243, 139, 168, 0.15);
+    color: #fab387;
     padding: 0 14px;
     margin-right: 0;
-}
-
-#language:hover {
-    background: rgba(243, 139, 168, 0.25);
 }
 
 /* Tooltips */
@@ -197,4 +169,9 @@ tooltip label {
     color: #cdd6f4;
 }
 
-/* Animations */
+/* Animation for urgent workspaces */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
