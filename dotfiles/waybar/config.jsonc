@@ -3,10 +3,10 @@
   "position": "top",
   "height": 32,
   "spacing": 4,
-  "modules-left": ["sway/workspaces","sway/window"],
+  "modules-left": ["hyprland/workspaces","hyprland/window"],
   "modules-center": ["clock"],
   "modules-right": [
-    "sway/language",
+    "hyprland/language",
     "pulseaudio",
     "network",
     "cpu",
@@ -17,24 +17,24 @@
   ],
   
   // Sway Workspaces
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon} {name}",
     "format-icons": {
-      "focused": "",
+      "active": "",
       "default": ""
     },
     "all-outputs": false
   }, 
-  "sway/language": {
+  "hyprland/language": {
     "format": "  {}",
     "format-en": "EN",
     "format-fa": "FA",
     "tooltip": true,
-    "on-click": "swaymsg input \"*\" xkb_switch_layout next"
+    "on-click": "hyprctl switchxkblayout current next"
   },
 
   // Active Window
-  "sway/window": {
+  "hyprland/window": {
     "format": "{}",
     "separator": false,
     "max-length": 50
