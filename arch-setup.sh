@@ -38,8 +38,7 @@ fi
 PACKAGES=(
   base-devel linux-headers
   pipewire pipewire-alsa pipewire-pulse wireplumber
-  networkmanager networkmanager-openconnect network-manager-applet blueman bluez 
-  xdg-user-dirs xdg-utils 
+  networkmanager networkmanager-openconnect blueman bluez 
   polkit polkit-kde-agent 
   unzip p7zip unrar htop wget curl openssh persepolis
   zsh zsh-autosuggestions zsh-syntax-highlighting
@@ -48,9 +47,11 @@ PACKAGES=(
   nvim git github-cli lazygit
   docker docker-compose
 
-  hyprland hyprutils hyprlock xdg-desktop-portal-hyprland
-  hyprlauncher hyprsunset hyprpicker hyprpaper hypridle
-  swaync grim slurp wl-clipboard brightnessctl playerctl pamixer
+  plasma
+#  hyprland hyprutils hyprlock xdg-desktop-portal-hyprland
+#  hyprlauncher hyprsunset hyprpicker hyprpaper hypridle
+#  swaync grim slurp wl-clipboard brightnessctl playerctl pamixer
+#  xdg-user-dirs xdg-utils celluloid papers
 
   tlp powertop
 
@@ -65,7 +66,7 @@ echo "Installing packages: ${PACKAGES[*]}"
 sudo pacman -S --needed --noconfirm  "${PACKAGES[@]}"
 
 AUR_PACKAGES=(
-  vazirmatn-fonts
+  vazirmatn-fonts bibata-cursor-theme
   egl-wayland
   dxvk-bin vkd3d lib32-vkd3d
 #  asusctl supergfxctl rog-control-center

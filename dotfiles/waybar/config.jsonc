@@ -23,7 +23,8 @@
       "active": "",
       "default": ""
     },
-    "all-outputs": false
+    "all-outputs": false,
+    "on-click": ""
   }, 
   "hyprland/language": {
     "format": "  {}",
@@ -61,7 +62,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": ["", "", ""]
     },
     "scroll-step": 5,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
