@@ -1,14 +1,12 @@
 #!/bin/bash
 
-VPN_USER=pre1m2019605
-VPN_PASS=32925
-
 # Define your VPN servers with friendly names
 declare -A VPN_SERVERS=(
     ["us"]="cmhous.goodfst.com"
     ["nl"]="cmhonl.goodfst.com"
     ["ca"]="cmhoca.goodfst.com"
     ["tr"]="cmhotr.goodfst.com"
+    ["de"]="cmhode.goodfst.com"
 )
 
 echo "Available VPN servers:"
