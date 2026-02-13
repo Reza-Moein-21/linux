@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>VS Code Cheatsheet (Focus + Editing)</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --muted:#9aa7c7;
+      --text:#e9eeff;
+      --border:rgba(255,255,255,.10);
+      --accent:#7aa2ff;
+      --accent2:#9dffb0;
+      --danger:#ff7a7a;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(122,162,255,.18), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(157,255,176,.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      min-height:100vh;
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.65);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 18px 40px;
+    }
+
+    .top{
+      display:flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    h1{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing:.2px;
+      font-weight: 800;
+    }
+
+    .sub{
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .searchRow{
+      display:flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search{
+      width: min(520px, 85vw);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+    .search::placeholder{ color: rgba(233,238,255,.45); }
+
+    .pill{
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+      transition: transform .08s ease, background .15s ease;
+    }
+    .pill:hover{ background: rgba(255,255,255,.07); }
+    .pill:active{ transform: scale(.98); }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: rgba(18,26,51,.92);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cardHead{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--border);
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .cardHead h2{
+      margin:0;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+
+    .count{
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    table{
+      width:100%;
+      border-collapse: collapse;
+    }
+    th, td{
+      text-align:left;
+      padding: 10px 14px;
+      vertical-align: top;
+    }
+    th{
+      font-size: 12px;
+      color: rgba(233,238,255,.85);
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+    td{
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 13px;
+      color: rgba(233,238,255,.92);
+    }
+    tr:last-child td{ border-bottom: none; }
+
+    .k{
+      font-family: var(--mono);
+      font-size: 12.5px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .muted{ color: var(--muted); }
+
+    .empty{
+      margin-top: 18px;
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      padding: 18px;
+      color: var(--muted);
+      display:none;
+    }
+
+    .hint{
+      margin-top: 10px;
+      color: rgba(233,238,255,.55);
+      font-size: 12px;
+    }
+
+    mark{
+      background: rgba(122,162,255,.22);
+      color: var(--text);
+      padding: 0 3px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>VS Code Cheatsheet (Focus + Editing)</h1>
+        <div class="sub">Type to search. It filters across actions + shortcuts (Win/Linux + Mac).</div>
+      </div>
+
+      <div class="searchRow">
+        <input id="search" class="search" type="search"
+               placeholder="Search: zen, duplicate, format, go to definition, ctrl + p, etc…" />
+        <button class="pill" id="clearBtn">Clear</button>
+        <button class="pill" id="copyBtn" title="Copies visible results as plain text">Copy Visible</button>
+      </div>
+    </div>
+    <div class="hint">Tip: Search understands partial words. Example: <span class="k">alt +</span>, <span class="k">rename</span>, <span class="k">cmd + shift</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="grid" class="grid"></div>
+  <div id="empty" class="empty">No matches. Try another keyword like <span class="k">format</span> or <span class="k">ctrl + p</span>.</div>
+</main>
+
+<script>
+  // ---- Data (single source of truth) ----
+  const sections = [
+    {
+      title: "🎯 Focus / UI",
+      rows: [
+        { action: "Zen Mode (hide everything)", win: "Ctrl + K then Z", mac: "Cmd + K then Z" },
+        { action: "Toggle Bottom Panel (Terminal / Problems / Output)", win: "Ctrl + J", mac: "Cmd + J" },
+        { action: "Toggle Sidebar (Explorer / Search / Git)", win: "Ctrl + B", mac: "Cmd + B" },
+        { action: "Full Screen", win: "F11", mac: "Ctrl + Cmd + F" },
+        { action: "Exit Zen Mode", win: "Esc then Esc", mac: "Esc then Esc" },
+      ]
+    },
+    {
+      title: "✍️ Basic Editing",
+      rows: [
+        { action: "Copy / Cut / Paste", win: "Ctrl + C / X / V", mac: "Cmd + C / X / V" },
+        { action: "Undo / Redo", win: "Ctrl + Z / Ctrl + Y", mac: "Cmd + Z / Cmd + Shift + Z" },
+        { action: "Save", win: "Ctrl + S", mac: "Cmd + S" },
+        { action: "Save All", win: "Ctrl + K then S", mac: "Cmd + K then S" },
+      ]
+    },
+    {
+      title: "🔥 Most Useful Editing",
+      rows: [
+        { action: "Duplicate line", win: "Shift + Alt + ↓ / ↑", mac: "Shift + Option + ↓ / ↑" },
+        { action: "Move line up/down", win: "Alt + ↓ / ↑", mac: "Option + ↓ / ↑" },
+        { action: "Delete line", win: "Ctrl + Shift + K", mac: "Cmd + Shift + K" },
+        { action: "Insert line below / above", win: "Ctrl + Enter / Ctrl + Shift + Enter", mac: "Cmd + Enter / Cmd + Shift + Enter" },
+      ]
+    },
+    {
+      title: "🧠 Multi Cursor",
+      rows: [
+        { action: "Add cursor (mouse)", win: "Alt + Click", mac: "Option + Click" },
+        { action: "Add cursor above/below", win: "Ctrl + Alt + ↑ / ↓", mac: "Cmd + Option + ↑ / ↓" },
+        { action: "Select next same word", win: "Ctrl + D", mac: "Cmd + D" },
+        { action: "Select ALL same word", win: "Ctrl + Shift + L", mac: "Cmd + Shift + L" },
+        { action: "Undo last cursor", win: "Ctrl + U", mac: "Cmd + U" },
+      ]
+    },
+    {
+      title: "🔎 Search & Replace",
+      rows: [
+        { action: "Find", win: "Ctrl + F", mac: "Cmd + F" },
+        { action: "Replace", win: "Ctrl + H", mac: "Cmd + Option + F" },
+        { action: "Find in files", win: "Ctrl + Shift + F", mac: "Cmd + Shift + F" },
+        { action: "Replace in files", win: "Ctrl + Shift + H", mac: "Cmd + Shift + H" },
+      ]
+    },
+    {
+      title: "📌 Navigation",
+      rows: [
+        { action: "Quick Open file", win: "Ctrl + P", mac: "Cmd + P" },
+        { action: "Go to line", win: "Ctrl + G", mac: "Cmd + G" },
+        { action: "Go to symbol in file (methods/classes)", win: "Ctrl + Shift + O", mac: "Cmd + Shift + O" },
+        { action: "Go to symbol in project", win: "Ctrl + T", mac: "Cmd + T" },
+      ]
+    },
+    {
+      title: "🧭 Code Navigation",
+      rows: [
+        { action: "Go to Definition", win: "F12", mac: "F12" },
+        { action: "Peek Definition", win: "Alt + F12", mac: "Option + F12" },
+        { action: "Go Back / Forward", win: "Alt + ← / →", mac: "Ctrl + - / Ctrl + Shift + -" },
+      ]
+    },
+    {
+      title: "🧹 Formatting & Refactor",
+      rows: [
+        { action: "Format document", win: "Shift + Alt + F", mac: "Shift + Option + F" },
+        { action: "Rename symbol", win: "F2", mac: "F2" },
+        { action: "Quick Fix / Auto Import", win: "Ctrl + .", mac: "Cmd + ." },
+      ]
+    },
+    {
+      title: "💡 Smart Coding Helpers",
+      rows: [
+        { action: "Trigger suggestions", win: "Ctrl + Space", mac: "Cmd + Space" },
+        { action: "Parameter hints", win: "Ctrl + Shift + Space", mac: "Cmd + Shift + Space" },
+      ]
+    },
+    {
+      title: "🧩 Tabs / Editor Layout",
+      rows: [
+        { action: "Close current tab", win: "Ctrl + W", mac: "Cmd + W" },
+        { action: "Reopen closed tab", win: "Ctrl + Shift + T", mac: "Cmd + Shift + T" },
+        { action: "Split editor", win: "Ctrl + \\", mac: "Cmd + \\" },
+        { action: "Switch between split editors", win: "Ctrl + 1 / 2 / 3", mac: "Cmd + 1 / 2 / 3" },
+      ]
+    },
+  ];
+
+  // ---- Render ----
+  const grid = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  const search = document.getElementById("search");
+  const clearBtn = document.getElementById("clearBtn");
+  const copyBtn = document.getElementById("copyBtn");
+
+  function escapeHtml(str){
+    return str.replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
+  }
+
+  function highlight(text, q){
+    if(!q) return escapeHtml(text);
+    const safe = escapeHtml(text);
+    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
+    return safe.replace(re, (m) => `<mark>${m}</mark>`);
+  }
+
+  function render(query=""){
+    grid.innerHTML = "";
+    const q = query.trim().toLowerCase();
+
+    let totalVisible = 0;
+
+    sections.forEach(section => {
+      const filtered = section.rows.filter(r => {
+        if(!q) return true;
+        const hay = `${r.action} ${r.win} ${r.mac}`.toLowerCase();
+        return hay.includes(q);
+      });
+
+      if(filtered.length === 0) return;
+
+      totalVisible += filtered.length;
+
+      const card = document.createElement("section");
+      card.className = "card";
+
+      const head = document.createElement("div");
+      head.className = "cardHead";
+      head.innerHTML = `
+        <h2>${escapeHtml(section.title)}</h2>
+        <div class="count">${filtered.length} item${filtered.length === 1 ? "" : "s"}</div>
+      `;
+
+      const table = document.createElement("table");
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th style="width:42%">Action</th>
+            <th style="width:29%">Windows / Linux</th>
+            <th style="width:29%">Mac</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filtered.map(r => `
+            <tr class="row">
+              <td>${highlight(r.action, q)}</td>
+              <td><span class="k">${highlight(r.win, q)}</span></td>
+              <td><span class="k">${highlight(r.mac, q)}</span></td>
+            </tr>
+          `).join("")}
+        </tbody>
+      `;
+
+      card.appendChild(head);
+      card.appendChild(table);
+      grid.appendChild(card);
+    });
+
+    empty.style.display = totalVisible === 0 ? "block" : "none";
+  }
+
+  // Initial render
+  render("");
+
+  // Search
+  search.addEventListener("input", (e) => render(e.target.value));
+
+  // Clear
+  clearBtn.addEventListener("click", () => {
+    search.value = "";
+    search.focus();
+    render("");
+  });
+
+  // Copy visible as plain text
+  copyBtn.addEventListener("click", async () => {
+    const q = search.value.trim().toLowerCase();
+    const lines = [];
+
+    sections.forEach(s => {
+      const rows = s.rows.filter(r => {
+        if(!q) return true;
+        return (`${r.action} ${r.win} ${r.mac}`).toLowerCase().includes(q);
+      });
+      if(rows.length === 0) return;
+
+      lines.push(s.title);
+      rows.forEach(r => {
+        lines.push(`- ${r.action}`);
+        lines.push(`  Win/Linux: ${r.win}`);
+        lines.push(`  Mac:       ${r.mac}`);
+      });
+      lines.push("");
+    });
+
+    const text = lines.join("\n").trim() || "No results to copy.";
+
+    try{
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => copyBtn.textContent = "Copy Visible", 900);
+    }catch{
+      alert("Clipboard blocked by browser. Try selecting and copying manually.");
+    }
+  });
+</script>
+</body>
+</html>
+
