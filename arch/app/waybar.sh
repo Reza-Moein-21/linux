@@ -1,4 +1,4 @@
-APP_NAME=stow
+APP_NAME=waybar
 if command -v $APP_NAME &> /dev/null; then
     echo "$APP_NAME is already installed. Skipping installation."
 else
