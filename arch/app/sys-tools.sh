@@ -29,7 +29,9 @@ fi
 
 
 PKGS=(
-zip unzip stow thunar thunar-shares-plugin thunar-volman starship
+zip unzip stow 
+nautilus nautilus-share
+starship
 )
 
 echo "Installing sys-tools packages: ${PKGS[*]}"

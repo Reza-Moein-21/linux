@@ -2,6 +2,11 @@
 
 set -e  # Exit on error
 
+if [ "$EUID" -eq 0 ]; then
+    echo "Do NOT run this script with sudo!"
+    exit 1
+fi
+
 source ./app/sys-tools.sh
 source ./app/waybar.sh
 source ./app/fonts.sh
@@ -46,10 +51,20 @@ stow -t $HOME -d ./dotfiles -D starship
 stow -t $HOME -d ./dotfiles starship 
 echo "starship dotfiles applied"
 
+stow -t $HOME -d ./dotfiles -D wofi 
+stow -t $HOME -d ./dotfiles wofi 
+echo "wofi dotfiles applied"
+
+: <<'BLOCK'
 stow -t $HOME -d ./dotfiles -D gtk-3.0 
 stow -t $HOME -d ./dotfiles gtk-3.0 
 echo "gtk-3.0 dotfiles applied"
-
+ 
 stow -t $HOME -d ./dotfiles -D gtk-4.0 
 stow -t $HOME -d ./dotfiles gtk-4.0 
 echo "gtk-4.0 dotfiles applied"
+BLOCK
+
+stow -t $HOME -d ./dotfiles -D bash 
+stow -t $HOME -d ./dotfiles bash 
+echo "bash dotfiles applied"
